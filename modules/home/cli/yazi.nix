@@ -5,8 +5,13 @@
     enableFishIntegration = true;
     shellWrapperName = "y";
 
+    package = inputs.yazi.packages.${pkgs.system}.default.override {
+      _7zz = pkgs._7zz-rar;
+    };
+
     settings = {
       manager = {
+        ratio = [ 1 3 4 ];
         linemode = "size";
         show_symlink = true;
         sort_by = "natural";
@@ -15,13 +20,17 @@
         sort_sensitive = false;
       };
     };
-
-    plugins = {
-      full-border = "${inputs.yazi-plugins}/full-border.yazi";
-    };
   };
 
-  xdg.configFile."yazi/init.lua".text = ''
-    require("full-border"):setup() 
-  '';
+  home = {
+    packages = with pkgs; [
+      ffmpegthumbnailer 
+      unar
+      jq
+      poppler
+      fd
+      ripgrep
+    ];
+  };
+
 }
