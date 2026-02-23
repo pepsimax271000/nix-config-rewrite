@@ -6,8 +6,8 @@
       enable = true;
 
       settings.user = {
-        name = "Your Name";
-        email = "you@yourdomain.com";
+        name = "pepsimax271000";
+        email = "github2@adamg.win";
       };
 
       settings = {
