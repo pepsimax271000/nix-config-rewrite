@@ -8,7 +8,6 @@
     ./xdg.nix
     ./gaming.nix
     ./virtualization.nix
-    ./productivity.nix
   ];
 
 }

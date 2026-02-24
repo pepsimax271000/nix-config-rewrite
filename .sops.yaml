@@ -1,0 +1,9 @@
+keys:
+  - &heavy age147wgzf5m2ewc4l9gyd8zwapflfmmetcpekuepzn9awutxhfh8c4svzxjn5
+  - &primary age1x5mapzr2pcswvela9nmdah6uzrv4csthupk2vkslwjpne32m6d3syp9nst
+creation_rules:
+  - path_regex: secrets/.*
+    key_groups:
+      - age:
+        - *primary
+        - *heavy

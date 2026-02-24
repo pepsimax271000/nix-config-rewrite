@@ -26,12 +26,12 @@
       enable = lib.mkEnableOption "virtualization";
     };
 
-    productivity = {
-      enable = lib.mkEnableOption "productivity applications";
-    };
-
     laptop = {
       enable = lib.mkEnableOption "laptop power management";
+    };
+
+    server = {
+      enable = lib.mkEnableOption "server mode";
     };
 
   };

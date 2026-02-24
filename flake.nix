@@ -62,13 +62,16 @@
     inherit (self) outputs;
     system = "x86_64-linux";
 
+    vars = import ./lib/vars.nix;
+
     mkSystem = hostname: extraModules: nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs outputs hostname; };
+      specialArgs = { inherit inputs outputs hostname vars; };
       modules = [
         ./hosts/${hostname}
         home-manager.nixosModules.home-manager
         stylix.nixosModules.stylix
+        inputs.sops-nix.nixosModules.sops
         {
           home-manager.sharedModules = [
             inputs.noctalia.homeModules.default
@@ -82,16 +85,15 @@
 
     nixosConfigurations = {
 
-      multi = mkSystem "multi" [];
+      multi = mkSystem "multi" [
+        inputs.nixos-hardware.nixosModules.common-cpu-amd
+        inputs.nixos-hardware.nixosModules.common-cpu-zenpower
+        inputs.nixos-hardware.nixosModules.common-gpu-amd
+      ];
       heavy = mkSystem "heavy" [
         inputs.nixos-hardware.nixosModules.lenovo-thinkpad-w520
         inputs.nixos-hardware.nixosModules.common-gpu-nvidia-disable
-      ];
 
     };
-
-    overlays = import ./overlays { inherit inputs; };
-
   };
-
 }

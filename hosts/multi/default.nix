@@ -1,4 +1,4 @@
-{ inputs, outputs, hostname, config, ... }: {
+{ inputs, outputs, hostname, config, vars, ... }: {
 
   imports = [
     ./hardware-configuration.nix
@@ -14,19 +14,11 @@
     desktop.enable        = true;
     gaming.enable         = false;
     virtualization.enable = false;
-    productivity.enable   = false;
     laptop.enable         = false;
     nfs.enable            = true;
     bootloader = {
       type = "grub";
     };
-  };
-
-  home-manager = {
-    useGlobalPkgs    = true;
-    useUserPackages  = true;
-    extraSpecialArgs = { inherit inputs outputs; };
-    users.ye = import ../../home/ye/desktop.nix;
   };
 
   hardware.graphics = {

@@ -1,13 +1,14 @@
-{ pkgs, ... }: {
+{ config, pkgs, vars, ... }: {
 
   users = {
 
-    mutableUsers = true;
+    mutableUsers = false;
 
     users = {
-      ye = {
+      ${vars.username} = {
         isNormalUser = true;
         shell        = pkgs.fish;
+        hashedPasswordFile = config.sops.secrets.hashed_password.path;
 
         extraGroups = [
           "wheel"
@@ -17,6 +18,9 @@
         ];
       };
 
+      root = {
+        hashedPasswordFile = config.sops.secrets.hashed_password.path;
+      };
     };
 
   };

@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, vars, ... }: {
 
   programs.noctalia-shell = {
     enable = true;
@@ -95,7 +95,7 @@
         enabled = false;
       };
       wallpaper = {
-        directory = "/home/ye/nix-config/assets/wallpapers";
+        directory = "/home/${vars.username}/nix-config/assets/wallpapers";
       };
       appLauncher = {
         terminalCommand = "foot -e";

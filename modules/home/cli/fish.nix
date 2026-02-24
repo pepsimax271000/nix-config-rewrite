@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, vars, ... }: {
 
   programs = {
 
@@ -77,7 +77,7 @@
           "nsp" = "nix-shell -p";
           "scg" = "sudo nix-collect-garbage -d";
           "ucg" = "nix-collect-garbage -d";
-          "cfg" = "z /home/ye/nix-config/";
+          "cfg" = "z /home/${vars.username}/nix-config/";
           "rn" = "nh os switch ~/nix-config";
 
           # SSH related

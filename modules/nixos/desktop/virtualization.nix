@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: lib.mkIf config.custom.virtualization.enable {
+{ config, lib, pkgs, vars, ... }: lib.mkIf config.custom.virtualization.enable {
 
   virtualisation = {
 
@@ -20,7 +20,7 @@
 
   users = {
     users = {
-      ye = {
+      ${vars.username} = {
         extraGroups = [ "libvirtd" ];
       };
     };
