@@ -2,12 +2,13 @@
 
   imports = [
     ./bootloader.nix
-    ./nix.nix
-    ./nfs.nix
     ./locale.nix
-    ./users.nix
-    ./security.nix
+    ./networking.nix
+    ./nfs.nix
+    ./nix.nix
     ./options.nix
+    ./security.nix
+    ./users.nix
   ];
 
 }

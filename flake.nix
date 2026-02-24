@@ -7,6 +7,10 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,10 +24,6 @@
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware";
     };
 
     sops-nix = {
@@ -78,7 +78,10 @@
 
     nixosConfigurations = {
 
-      multi = mkSystem "multi" [
+      multi = mkSystem "multi" [];
+      heavy = mkSystem "heavy" [
+        inputs.nixos-hardware.nixosModules.lenovo-thinkpad-w520
+        inputs.nixos-hardware.nixosModules.common-gpu-nvidia-disable
       ];
 
     };

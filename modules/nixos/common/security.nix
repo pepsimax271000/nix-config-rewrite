@@ -14,7 +14,7 @@
 
   networking = {
     firewall = {
-      enable = true;
+      enable = false;
     };
   };
 

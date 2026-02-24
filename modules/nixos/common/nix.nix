@@ -5,6 +5,8 @@
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store   = true;
+      max-jobs = "auto";
+      cores = 0;
 
       substituters = [
         "https://cache.nixos.org"
@@ -27,6 +29,10 @@
       options   = "--delete-older-than 7d";
     };
 
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
   };
 
   nixpkgs = {

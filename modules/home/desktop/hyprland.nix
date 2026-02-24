@@ -11,6 +11,7 @@
           monitor = [
             # adjust to your setup
             "DVI-D-1,2560x1600@59.97,0x0,1"
+            "LVDS-1,1920x1080@60,0x0,1"
           ];
 
           general = {
