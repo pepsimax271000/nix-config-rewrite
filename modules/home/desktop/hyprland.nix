@@ -1,12 +1,27 @@
 { inputs, pkgs, ... }: {
 
+  home.packages = with pkgs; [
+    hyprpicker
+    wl-clipboard
+  ];
+
   wayland = {
     windowManager = {
       hyprland = {
         enable  = true;
-        package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+
+        plugins = [
+          inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system}.split-monitor-workspaces
+        ];
 
         settings = {
+
+          exec-once = [
+            "wl-paste --type text --watch cliphist store"
+            "wl-paste --type image --watch cliphist store"
+            "/usr/bin/kdeconnectd"
+          ];
 
           monitor = [
             # adjust to your setup
@@ -26,32 +41,18 @@
             rounding     = 0;
             blur = {
               enabled  = false;
-              size     = 6;
-              passes   = 3;
             };
           };
 
           animations = {
             enabled = false;
-
-            bezier = [
-              "wind,0.05,0.9,0.1,1.05"
-              "winIn,0.1,1.1,0.1,1.1"
-              "winOut,0.3,-0.3,0,1"
-            ];
-
-            animation = [
-              "windows,1,6,wind,slide"
-              "windowsIn,1,6,winIn,slide"
-              "windowsOut,1,5,winOut,slide"
-              "fade,1,10,default"
-              "workspaces,1,5,wind"
-            ];
-
           };
 
           input = {
+            kb_options = "ctrl:nocaps";
             kb_layout    = "gb";
+            repeat_delay = "300";
+            repeat_rate = "50";
             follow_mouse = 1;
             touchpad = {
               natural_scroll = true;
@@ -113,6 +114,21 @@
           bindm = [
             "$mod, mouse:272, movewindow"
             "$mod, mouse:273, resizewindow"
+          ];
+
+          bindle = [
+            ", XF86AudioRaiseVolume, exec, noctalia-shell ipc call volume increase"
+            ", XF86AudioLowerVolume, exec, noctalia-shell ipc call volume decrease"
+            ", XF86MonBrightnessUp, exec, noctalia-shell ipc call brightness increase"
+            ", XF86MonBrightnessDown, exec, noctalia-shell ipc call brightness decrease"
+          ];
+
+          bindl = [
+            ", XF86AudioMute, exec, noctalia-shell ipc call volume muteOutput"
+            ", XF86AudioNext, exec, noctalia-shell ipc call media next"
+            ", XF86AudioPrev, exec, noctalia-shell ipc call media previous"
+            ", XF86AudioPlay, exec, noctalia-shell ipc call media play"
+            ", XF86AudioPause, exec, noctalia-shell ipc call media pause"
           ];
         };
       };

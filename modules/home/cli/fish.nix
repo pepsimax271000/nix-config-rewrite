@@ -5,6 +5,15 @@
     fish = {
       enable = true;
 
+      interactiveShellInit = ''
+        set fish_greeting
+        function fish_user_key_bindings
+          fish_vi_key_bindings
+        end
+        set -gx EDITOR nvim
+        set -gx VISUAL nvim
+      '';
+
       plugins = [
         {
           name = "fzf-fish";
@@ -64,9 +73,9 @@
           # Nixos related
           "nr" = "nixos-rebuild";
           "nuc" = "nh os switch ~/nix-config -u && nh clean all";
-          "nru" = "z ~/nix-config && doas nixos-rebuild switch --flake . --upgrade";
+          "nru" = "z ~/nix-config && sudo nixos-rebuild switch --flake . --upgrade";
           "nsp" = "nix-shell -p";
-          "scg" = "doas nix-collect-garbage -d";
+          "scg" = "sudo nix-collect-garbage -d";
           "ucg" = "nix-collect-garbage -d";
           "cfg" = "z /home/ye/nix-config/";
           "rn" = "nh os switch ~/nix-config";
@@ -83,11 +92,6 @@
             body = "mkdir -p $argv && cd $argv";
           };
         };
-
-        interactiveShellInit = ''
-          set -gx EDITOR nvim
-          set -gx VISUAL nvim
-        '';
 
     };
 

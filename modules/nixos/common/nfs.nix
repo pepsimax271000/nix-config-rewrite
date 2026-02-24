@@ -11,8 +11,9 @@
 
     mounts = lib.mkOption {
       type    = lib.types.attrsOf lib.types.str;
-      default = {};
-      example = { "/media/NAS" = "/"; };
+      default = {
+        "/media/NAS" = "/"; 
+      };
     };
 
   };
@@ -40,6 +41,7 @@
         "x-systemd.mount-timeout=5s"
         "soft"
         "timeo=15"
+        "nfsvers=4.2"
       ];
     }) config.custom.nfs.mounts;
 

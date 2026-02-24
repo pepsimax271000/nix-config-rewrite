@@ -1,10 +1,8 @@
 { pkgs, ... }: {
-
-  home = {
-    packages = [
-      pkgs.qbittorrent
-    ];
-  };
+  
+  home.packages = with pkgs; [
+    qbittorrent
+  ];
 
   xdg = {
     mimeApps = {

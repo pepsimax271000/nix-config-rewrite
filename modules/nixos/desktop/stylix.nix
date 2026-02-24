@@ -4,7 +4,7 @@
 
     enable = true;
 
-    image = ../../../wallpapers/default.jpg;
+    image = ../../../wallpapers/leaves.jpg;
 
 #    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
@@ -13,8 +13,8 @@
     fonts = {
 
       monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name    = "JetBrainsMono Nerd Font";
+        package = pkgs.nerd-fonts.sauce-code-pro;
+        name    = "SauceCodePro Nerd Font Mono";
       };
 
       sansSerif = {
@@ -28,7 +28,7 @@
       };
 
       sizes = {
-        terminal     = 13;
+        terminal     = 10;
         applications = 12;
         desktop      = 12;
         popups       = 12;
