@@ -93,7 +93,7 @@
       heavy = mkSystem "heavy" [
         inputs.nixos-hardware.nixosModules.lenovo-thinkpad-w520
         inputs.nixos-hardware.nixosModules.common-gpu-nvidia-disable
-
+      ];
     };
   };
 }
